@@ -38,7 +38,6 @@
  *  点击事件
  */
 - (void)voteForLiveShow{
-
     //执行动画
     [self voteAnimation];
 }
@@ -65,7 +64,7 @@
  */
 - (NSString *)randomImageNum{
 
-    int randomNum = arc4random() %4;
+    int randomNum = arc4random() % 4;
     
     switch (randomNum) {
         case 0:
@@ -170,8 +169,14 @@
     CAMediaTimingFunction *timing = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     keyAnima.timingFunction = timing;
     
+    CGPathRelease(path);
     return keyAnima;
 }
 
+#pragma mark -- CAAnimation的Delegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+
+    NSLog(@"动画执行完成");
+}
 
 @end
